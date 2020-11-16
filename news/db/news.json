@@ -1,0 +1,20 @@
+[
+  {
+    "created": "2020-10-10 11:30:02",
+    "text": "Text test 1",
+    "title": "Title test 1",
+    "link": 1
+  },
+  {
+    "created": "2020-10-15 14:35:07",
+    "text": "Text test 2",
+    "title": "Title test 2",
+    "link": 2
+  },
+  {
+    "created": "2020-12-10 07:10:03",
+    "text": "Text test 3",
+    "title": "Title test 3",
+    "link": 3
+  }
+]
