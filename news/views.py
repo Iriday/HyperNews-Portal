@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse, Http404
-from django.http.response import HttpResponseBadRequest
-from news.models import get_news_article
+from news.models import get_news_article, get_news_articles_sorted_by_date
 
 
 class MainView(View):
@@ -12,9 +11,13 @@ class MainView(View):
 
 class NewsArticleView(View):
     def get(self, request, link, *args, **kwargs):
-        try:
-            context = {"article": get_news_article(int(link))}
-        except IndexError:
+        article = get_news_article(int(link))
+        if not article:
             raise Http404
 
-        return render(request, "news/article.html", context=context)  # if link = 0 returns the newest article
+        return render(request, "news/article.html", context={"article": article})
+
+
+class NewsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "news/news.html", context={"sorted_articles": get_news_articles_sorted_by_date()})
