@@ -23,13 +23,9 @@ def __sort_articles_by_date(articles, newer_first=True):
     articles.sort(key=lambda v: v["created"])
     if newer_first:
         articles.reverse()
-    sorted_articles = []
+    sorted_articles = {}
 
-    for i in range(len(articles)):
-        date = articles[i]["created"][:10]
-        if i == 0 or not articles[i - 1]["created"].startswith(date):
-            sorted_articles.append((date, [articles[i]]))
-        else:
-            sorted_articles[-1][1].append(articles[i])
+    for article in articles:
+        sorted_articles.setdefault(article["created"][:10], []).append(article)
 
-    return sorted_articles
+    return sorted_articles.items()
