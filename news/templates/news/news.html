@@ -7,6 +7,12 @@
 <body>
 <h2>Hyper news</h2>
 <div>
+    <form action="/news/" method="get">
+        <label>Search: <input type="text" minlength="1" maxlength="200" required name="q"></label><br>
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div>
     {% for date, articles in sorted_articles %}
         <h4>{{ date }}</h4>
         <ul>

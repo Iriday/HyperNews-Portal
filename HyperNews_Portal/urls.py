@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('news/', NewsView.as_view()),
     path('news/create/', CreateNewsArticleView.as_view()),
+    re_path('news/[?]q=(?P<q>[^/]+)/?', NewsView.as_view()),
     re_path('news/(?P<link>[0-9]+)/?', NewsArticleView.as_view()),
     path('', MainView.as_view())
 ]

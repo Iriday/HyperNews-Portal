@@ -4,9 +4,9 @@ import datetime
 import json
 
 
-def get_news_articles():
-    with open(NEWS_JSON_PATH, "r") as json_file:
-        return json.load(json_file)
+def get_news_articles(q=None):
+    articles = __read_articles_from_file(NEWS_JSON_PATH)
+    return articles if not q else list(filter(lambda a: q in a['title'], articles))
 
 
 def get_news_article(link):
@@ -14,10 +14,6 @@ def get_news_article(link):
         if article["link"] == link:
             return article
     return None
-
-
-def get_news_articles_sorted_by_date(newer_first=True):
-    return __sort_articles_by_date(get_news_articles(), newer_first)
 
 
 def add_news_article(title, text):
@@ -29,12 +25,7 @@ def add_news_article(title, text):
     __save_articles_to_file(articles, NEWS_JSON_PATH)
 
 
-def __save_articles_to_file(articles, db_path):
-    with open(db_path, 'w') as json_file:
-        json.dump(articles, json_file)
-
-
-def __sort_articles_by_date(articles, newer_first=True):
+def sort_articles_by_date(articles, newer_first=True):
     articles.sort(key=lambda v: v["created"])
     if newer_first:
         articles.reverse()
@@ -44,3 +35,13 @@ def __sort_articles_by_date(articles, newer_first=True):
         sorted_articles.setdefault(article["created"][:10], []).append(article)
 
     return sorted_articles.items()
+
+
+def __read_articles_from_file(path):
+    with open(path, "r") as json_file:
+        return json.load(json_file)
+
+
+def __save_articles_to_file(articles, path):
+    with open(path, 'w') as json_file:
+        json.dump(articles, json_file)

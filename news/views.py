@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse, Http404
-from news.models import get_news_article, get_news_articles_sorted_by_date, add_news_article
+from news.models import get_news_article, sort_articles_by_date, get_news_articles, add_news_article
 
 
 class MainView(View):
@@ -20,7 +20,8 @@ class NewsArticleView(View):
 
 class NewsView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, "news/news.html", context={"sorted_articles": get_news_articles_sorted_by_date()})
+        return render(request, "news/news.html",
+                      context={"sorted_articles": sort_articles_by_date(get_news_articles(request.GET.get('q')))})
 
 
 class CreateNewsArticleView(View):
