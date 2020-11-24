@@ -6,7 +6,7 @@ from news.models import get_news_article, sort_articles_by_date, get_news_articl
 
 class MainView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse("<h1>Coming soon</h1>")
+        return redirect("/news/")
 
 
 class NewsArticleView(View):
