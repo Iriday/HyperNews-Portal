@@ -1,15 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Article</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-<div>
-    <h2>{{ article.title }}</h2>
-    <p>{{ article.created }}</p>
-    <p>{{ article.text }}</p>
+<header>
     <a target="_blank" href="/news/">News</a>
-</div>
+</header>
+<main>
+    <div class="main-container">
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.created }}</p>
+        <p id="news-article-text">{{ article.text }}</p>
+    </div>
+</main>
 </body>
 </html>

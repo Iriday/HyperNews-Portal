@@ -1,17 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Create news article</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-<div>
-    <form action="/news/create/" method="post">{% csrf_token %}
-        <label>Title: <input type="text" minlength="3" maxlength="200" required name="title"></label><br>
-        <label>Text: <input type="text" minlength="3" maxlength="500000" required name="text"></label><br>
-        <button type="submit">Create</button>
-    </form>
+<header>
     <a target="_blank" href="/news/">News</a>
-</div>
+</header>
+<main>
+    <div class="main-container">
+        <form action="/news/create/" method="post">{% csrf_token %}
+            <label for="in_title">Title: </label>
+            <input id="in_title" type="text" minlength="3" maxlength="200" required name="title" size="150">
+            <br>
+            <label for="in_article">Text: </label><br>
+            <textarea id="in_article" minlength="3" maxlength="500000" required name="text" cols="175"
+                      rows="40"></textarea>
+            <br>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</main>
 </body>
 </html>

@@ -1,27 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>News</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-<h2>Hyper news</h2>
-<div>
-    <form action="/news/" method="get">
-        <label>Search: <input type="text" minlength="1" maxlength="200" required name="q"></label><br>
-        <button type="submit">Search</button>
-    </form>
-</div>
-<div>
-    {% for date, articles in sorted_articles %}
-        <h4>{{ date }}</h4>
-        <ul>
-            {% for article in articles %}
-                <li><a target="_self" href="/news/{{ article.link }}/">{{ article.title }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
-</div>
-<a target="_self" href="/news/create/">Create news article</a>
+<header>
+    <a target="_self" href="/news/create/">Create news article</a>
+</header>
+<main>
+    <div>
+        <form action="/news/" method="get">
+            <label><input type="text" minlength="1" maxlength="200" required name="q" size="75"></label>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="main-container">
+        <h2>Hyper news</h2>
+        {% for date, articles in sorted_articles %}
+            <h4>{{ date }}</h4>
+            <ul>
+                {% for article in articles %}
+                    <li><a target="_self" href="/news/{{ article.link }}/">{{ article.title }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</main>
 </body>
 </html>

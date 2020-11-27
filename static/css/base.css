@@ -1,0 +1,26 @@
+.main-container, header {
+    padding: 8px;
+    margin: 8px;
+    border-radius: 3px;
+}
+
+.main-container {
+    background-color: #ffe6cf;
+}
+
+header {
+    background-color: #cbcbcb;
+    font-size: 19px;
+}
+
+input, textarea {
+    margin: 8px;
+}
+
+li {
+    font-size: 18px;
+}
+
+#news-article-text {
+    white-space: pre-wrap;
+}
